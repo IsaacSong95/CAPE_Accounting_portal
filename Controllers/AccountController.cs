@@ -15,7 +15,7 @@ namespace CAPE.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        string securityCode = "11";
+        string securityCode = "CAPE";
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 

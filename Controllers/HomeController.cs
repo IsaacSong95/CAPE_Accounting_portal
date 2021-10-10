@@ -20,7 +20,10 @@ namespace CAPE.Controllers
         {
             return View();
         }
-
+        public ActionResult NotFound()
+        {
+            return View();
+        }
 
         //Form functions
         [HttpPost]
@@ -251,19 +254,28 @@ namespace CAPE.Controllers
             temp.name = donor.name;
             List<Donor> d = db.Donors.Where(x => (x.name.Contains(temp.name)) || (x.ID == temp.ID)).ToList();
 
-            int did = d.First().ID;
+            if (d.Count() != 0)
+            {
 
-            List<Donation> donDonations = db.Donations.Where(x => (x.date.Year.Equals(donYear)) && (x.DID == did)).OrderBy(x => x.date).ToList();
-            decimal total = donDonations.Sum(x => x.amount);
-            decimal donorEnTotal = donDonations.Where(x => x.type.Contains("E")).Sum(x => x.amount);
-            decimal donorOnTotal = donDonations.Where(x => x.type.Contains("O")).Sum(x => x.amount);
+                int did = d.First().ID;
+                List<Donation> donDonations = db.Donations.Where(x => (x.date.Year.Equals(donYear)) && (x.DID == did)).OrderBy(x => x.date).ToList();
+                decimal total = donDonations.Sum(x => x.amount);
+                decimal donorEnTotal = donDonations.Where(x => x.type.Contains("E")).Sum(x => x.amount);
+                decimal donorOnTotal = donDonations.Where(x => x.type.Contains("O")).Sum(x => x.amount);
 
-            ViewBag.Name = d.First().name;
-            ViewBag.ID = d.First().ID;
-            ViewBag.Total = total;
-            ViewBag.enTotal = donorEnTotal;
-            ViewBag.onTotal = donorOnTotal;
-            return View(donDonations);
+                ViewBag.Name = d.First().name;
+                ViewBag.ID = d.First().ID;
+                ViewBag.Total = total;
+                ViewBag.enTotal = donorEnTotal;
+                ViewBag.onTotal = donorOnTotal;
+                return View(donDonations);
+            }
+            else
+            {
+                return RedirectToAction("NotFound", "Home");
+            }
+
+         
         }
 
         //Monthly expenses report

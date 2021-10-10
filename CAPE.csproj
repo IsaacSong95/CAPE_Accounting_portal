@@ -304,6 +304,7 @@
     <Content Include="Views\Home\ViewList.cshtml" />
     <Content Include="Views\Home\en.cshtml" />
     <Content Include="Views\Home\Online.cshtml" />
+    <Content Include="Views\Home\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

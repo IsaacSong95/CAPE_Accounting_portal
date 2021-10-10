@@ -297,7 +297,7 @@
             <div class="content_inside col-md-12">
                 <h2>Purpose Totals</h2>
                 <h3>Please select a purpose to view the total amount for.</h3>
-                <form method="post" action="~/Home/PurposeTotal">
+                <form method="post" action="~/Home/PurposeTotal" onsubmit="return Totalscheck()">
                     <div class="col-md-12 findByID">
                         <select class="col-md-12 form-control" name="purpose">
                             <option value="Missions">Missions</option>
@@ -329,7 +329,7 @@
                     </div>
                     <div class="col-md-12 findByID">
                         <label class="col-md-1">Year </label>
-                        <input class="form-control" type="text" name="year">
+                        <input class="form-control" id ="purposecheck" type="text" name="year">
                     </div>
                     <input type="submit" value="Generate total" class="btn btn-default" />
                 </form>
@@ -573,7 +573,7 @@
 
     function configureDropDownLists(category, subcategory) {
         var verc = ['Allowance - Phone', 'Allowance - Travel', 'Employment credentials, Registration', 'Salaries and Wages'];
-        var crpgs = ['Visiting speakers ministry gift', 'Advertising', 'Books, CDs and DVDs', 'Conferences', 'Gifts', 'Hospitality and Catering', 'Insurance premium', 'Sound Desk and IT', 'Kitchen', 'Magazines and subscriptions', 'Ministry resources', 'Music / Workship', 'Stamps and Postage', 'Printing', 'Stationary', 'Sunday School', 'Youth Ministry', 'ENABLE Men', 'ENABLE Women', 'Others'];
+        var crpgs = ['Visiting speakers ministry gift', 'Advertising', 'Books, CDs and DVDs', 'Conferences', 'Gifts', 'Hospitality and Catering', 'Insurance premium', 'Sound Desk and IT', 'Kitchen', 'Magazines and subscriptions', 'Ministry resources', 'Music / Worship', 'Stamps and Postage', 'Printing', 'Stationary', 'Sunday School', 'Youth Ministry', 'ENABLE Men', 'ENABLE Women', 'Others'];
         var gdm = ['Donations (Avalon Assembly of God)', 'Donations (Others)', 'Missions (Overseas)', 'Missions (Local)'];
         var oe = ['AGNZ Levy (3%)', 'Loss on disposal, Bank Statement printout'];
 
@@ -675,7 +675,7 @@
         YearID = document.getElementById('YearID').value;
 
         if (YearID == "" || YearID == null || !numbersOnly.test(YearID)) {
-            alert("This Year is required");
+            alert("This Year is required, Please only enter number");
             document.getElementById('YearID').select();
             return false;
         }
@@ -687,7 +687,7 @@
         YearName = document.getElementById('YearName').value;
 
         if (YearName == "" || YearName == null || !numbersOnly.test(YearName)) {
-            alert("This Year is required");
+            alert("This Year is required, Please only enter number");
             document.getElementById('YearName').select();
             return false;
         }
@@ -699,7 +699,7 @@
         YearName = document.getElementById('YearName').value;
 
         if (YearName == "" || YearName == null || !numbersOnly.test(YearName)) {
-            alert("This Year is required");
+            alert("This Year is required, Please only enter number");
             document.getElementById('YearName').select();
             return false;
         }
@@ -712,7 +712,7 @@
         YearExMonthly = document.getElementById('YearExMonthly').value;
 
         if (YearExMonthly == "" || YearExMonthly == null || !numbersOnly.test(YearExMonthly)) {
-            alert("This Year is required");
+            alert("This Year is required, Please only enter number");
             document.getElementById('YearExMonthly').select();
             return false;
         }
@@ -724,9 +724,23 @@
         yearExYearly = document.getElementById('yearExYearly').value;
 
         if (yearExYearly == "" || yearExYearly == null || !numbersOnly.test(yearExYearly)) {
-            alert("This Year is required");
+            alert("This Year is required, Please only enter number");
             document.getElementById('yearExYearly').select();
             return false;
         }
 
-    }</script>
+    }
+
+
+    function Totalscheck() {
+        purposecheck = document.getElementById('purposecheck').value;
+
+        if (purposecheck == "" || purposecheck == null || !numbersOnly.test(purposecheck)) {
+            alert("This Year is required, Please only enter number");
+            document.getElementById('purposecheck').select();
+            return false;
+        }
+
+    }
+
+    </script>

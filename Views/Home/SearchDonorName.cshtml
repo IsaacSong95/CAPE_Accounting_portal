@@ -4,7 +4,7 @@
 <div class="col-ld-12 body">
     <div class="col-md-12 main">
         <h2>Add New Envelope Donation</h2>
-        <form method="post" action="~/Home/en" onsubmit="return check()">
+        <form method="post" action="~/Home/en" onsubmit="return checkamount()">
             <div class="col-md-12 findByID">
                 <label class="control-label col-md-2">Name:</label>
                 <input type="text" class="control-label col-md-3 form-control" name="name" readonly value="@foreach (var i in Model) { @i.name}">
@@ -211,8 +211,8 @@
 </style>
 <script>
     numbersOnly = /^[0-9]+$/;
-    function check() {
-        amount = document.getElementById('amount').value;
+    function checkamount() {
+        amountDonation = document.getElementById('amountDonation').value;
 
         if (amountDonation == "" || amountDonation == null || !numbersOnly.test(amountDonation)) {
             alert("This amount is required, Please only enter number");
